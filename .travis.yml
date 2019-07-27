@@ -7,7 +7,7 @@ python:
 
 # Install dependencies
 install:
-- python -m pip install pytest
+- python -m pip install pytest requests
 
 # Run tests
 script:

@@ -9,14 +9,14 @@ Python >= 3.7
 ## Running
 The Python cpost_tracking.py script syntax is following:
 ```
-package_tracking tracking_number
+package_tracking.py [-h] -p PACKAGE
 ```
 
 *Note: following examples are given for Fedora 30 with Python 3.7 installed*
 
 Lets say you want to find out where is your package with tracking number ABCDE12345678:
 ```
-python package_tracking.py ABCDE12345678
+python package_tracking.py -p ABCDE12345678
 ```
 
 Example output:

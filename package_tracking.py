@@ -49,7 +49,10 @@ def main(cpost_pkg):
     :param cpost_pkg: A CPostPackage class with url and track no.
     :return:
     """
-    r = requests.get(cpost_pkg.tracking_url + cpost_pkg.tracking_number)
+    try:
+        r = requests.get(cpost_pkg.tracking_url + cpost_pkg.tracking_number)
+    except requests.exceptions.RequestException as e:
+        print("{0}".format(e))
 
     html_doc = r.content
 

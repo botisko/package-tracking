@@ -8,6 +8,7 @@ python:
 # Install dependencies
 install:
 - python -m pip install pytest requests
+- python -m pip install -r requirements.txt
 
 # Run tests
 script:

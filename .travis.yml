@@ -1,0 +1,14 @@
+# Set the build language to Python
+language: python
+
+# Set the python version to 3.6
+python:
+- '3.7'
+
+# Install dependencies
+install:
+- python -m pip install pytest
+
+# Run tests
+script:
+- python -m pytest tests/test_package_tracking.py -v

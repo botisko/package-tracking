@@ -2,6 +2,7 @@ import sys
 
 import requests
 from bs4 import BeautifulSoup
+import argparse
 
 
 class CPostPackage:
@@ -9,12 +10,12 @@ class CPostPackage:
     Class for storing Ceska posta package information
     """
 
-    def __init__(self):
+    def __init__(self, tracking_number="DR1234567890E"):
         """
         Constructor for CPostPackage class.
         """
         # Create some member animals
-        self.tracking_number = sys.argv[1]
+        self.tracking_number = tracking_number
         self.tracking_url = "https://www.postaonline.cz/trackandtrace/-/zasilka/cislo?parcelNumbers="
 
 
@@ -24,6 +25,10 @@ def print_package_status(status):
     :param status: Last package status
     :return:
     """
+    # Check if the input is list
+    if type(status) is not list:
+        raise TypeError
+
     # Get date and status
     package_no = str(status[0])
     package_date = str(status[1])
@@ -43,7 +48,7 @@ def print_package_status(status):
     print(current_line)
 
 
-def main(cpost_pkg):
+def find_package_status(cpost_pkg):
     """
     Gets Ceska posta track and trace page and scrape actual package info based on package no.
     :param cpost_pkg: A CPostPackage class with url and track no.
@@ -69,7 +74,11 @@ def main(cpost_pkg):
 
 
 if __name__ == '__main__':
-    # Create a new delivery class
-    delivery = CPostPackage()
+    # Construct the argument parse and parse the arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--package', required=True, help="Package number")
+    args = parser.parse_args()
 
-    main(delivery)
+    # Create a new delivery class
+    delivery = CPostPackage(args.package)
+    find_package_status(delivery)

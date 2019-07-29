@@ -8,6 +8,11 @@ An utility for finding delivery status for Ceska posta
 Python >= 3.7
 ```
 
+## Before the first run
+```
+pip install -r requirements.txt
+```
+
 ## Running
 The Python cpost_tracking.py script syntax is following:
 ```

@@ -70,7 +70,11 @@ def find_package_status(cpost_pkg):
         if elm.get_text(strip=True) is not '':
             status.append(elm.get_text(strip=True))
 
-    print_package_status(status)
+    try:
+        print_package_status(status)
+    except IndexError as e:
+        print("Neexistujici cislo zasilky!".format(e))
+        sys.exit(0)
 
 
 if __name__ == '__main__':

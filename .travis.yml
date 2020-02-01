@@ -22,7 +22,6 @@ install:
 script:
 - coverage run tests/test_package_tracking.py
 
-# Upload to codecov.io
-script:
-- bash <(curl -s https://codecov.io/bash)
-
+# Push the results back to codecov
+after_success:
+- codecov --token=ac82f897-9b59-421b-a090-aec30275be70

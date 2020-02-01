@@ -16,11 +16,11 @@ script:
 
 # Install the codecov pip dependency
 install:
-- pip install codecov
+- pip install pytest-cov
 
-# Run the unit test
+# Run the pytest coverage
 script:
-- coverage run tests/test_package_tracking.py
+- pytest --cov=./
 
 # Upload to codecov.io
 script:

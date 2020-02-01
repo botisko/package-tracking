@@ -1,5 +1,5 @@
 # package-tracking
-[![Build Status](https://travis-ci.org/botisko/package-tracking.svg?branch=master)](https://travis-ci.org/botisko/package-tracking)
+[![Build Status](https://travis-ci.org/botisko/package-tracking.svg?branch=master)](https://travis-ci.org/botisko/package-tracking) [![codecov](https://codecov.io/gh/botisko/OpenAlt2018/branch/master/graph/badge.svg)](https://codecov.io/gh/botisko/package-tracking)
 
 An utility for finding delivery status for Ceska posta
 

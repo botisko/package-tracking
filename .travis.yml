@@ -1,9 +1,9 @@
 # Set the build language to Python
 language: python
 
-# Set the python version to 3.6
+# Set the python version to 3.7
 python:
-- '3.6'
+- '3.7'
 
 # Install dependencies
 install:
@@ -13,3 +13,16 @@ install:
 # Run tests
 script:
 - python -m pytest tests/test_package_tracking.py -v
+
+# Install the codecov pip dependency
+install:
+- pip install codecov
+
+# Run the unit test
+script:
+- coverage run tests/test_package_tracking.py
+
+# Upload to codecov.io
+script:
+- bash <(curl -s https://codecov.io/bash)
+

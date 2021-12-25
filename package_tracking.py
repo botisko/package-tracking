@@ -47,50 +47,56 @@ class CeskaPosta:
 
         return self
 
+    def __str__(self):
+        return f"{self.tracking_number()} | {self.status()} | {self.date()} | {self.place_arrival()} | {self.postal_code()}"
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}" \
+               f"({self.tracking_number()}, {self.status()}, {self.date()}, {self.place_arrival()}, {self.postal_code()})>"
+
     def date(self) -> datetime.date:
         """Returns datetime object from provided date."""
         return datetime.strptime(self.date_pkg, "%d.%m.%Y").date()
 
-    def status(self):
+    def status(self) -> str:
         """Returns package status."""
         return self.status_pkg
 
-    def tracking_number(self):
+    def tracking_number(self) -> str:
         """Returns tracking number of package."""
         return self.pkg_tracking_number
 
-    def postal_code(self):
+    def postal_code(self) -> int:
         """Returns postal code."""
-        return self.psc
+        return int(self.psc)
 
-    def place_arrival(self):
+    def place_arrival(self) -> str:
         """Returns place of arrival of the package."""
         return self.place
 
 
-def print_package_status(delivery: CeskaPosta):
+def print_package_status(package: CeskaPosta):
     """
     Prints package info in nice format base on last status
-    :param delivery: instance of CeskaPosta
+    :param package: instance of CeskaPosta
     :return:
     """
 
     # Get the line length
-    current_line = '=' * (len(str(delivery.date())) + len(delivery.status()) + 7)
-    no_line = '=' * int((len(current_line) - len(delivery.tracking_number())) / 2)
+    current_line = '=' * (len(str(package.date())) + len(package.status()) + 7)
+    no_line = '=' * int((len(current_line) - len(package.tracking_number())) / 2)
 
     # If the no. of chars in package no. is odd, align the printed table
     if len(no_line) % 2 == 0:
-        print("{0}{1}{2}".format(no_line, delivery.tracking_number(), no_line))
+        print("{0}{1}{2}".format(no_line, package.tracking_number(), no_line))
     else:
-        print("{0}{1}{2}=".format(no_line, delivery.tracking_number(), no_line))
+        print("{0}{1}{2}=".format(no_line, package.tracking_number(), no_line))
     print(current_line)
-    print("= {0} | {1} =".format(delivery.date(), delivery.tracking_number()))
+    print("= {0} | {1} =".format(package.date(), package.tracking_number()))
     print(current_line)
 
 
 if __name__ == '__main__':
-    # Construct the argument parse and parse the arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--package', required=True, help="Package number")
     args = parser.parse_args()

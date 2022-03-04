@@ -18,7 +18,10 @@ class CeskaPosta:
         self.place = None
 
         # get the values from Ceska Posta and add them to the variables
-        self.initialize()
+        if pkg_tracking_number is not None:
+            self.initialize()
+        else:
+            raise AttributeError("Package number not provided!")
 
     def initialize(self):
         try:
@@ -54,9 +57,9 @@ class CeskaPosta:
         return f"<{self.__class__.__name__}" \
                f"({self.tracking_number()}, {self.status()}, {self.date()}, {self.place_arrival()}, {self.postal_code()})>"
 
-    def date(self) -> datetime.date:
+    def date(self) -> str:
         """Returns datetime object from provided date."""
-        return datetime.strptime(self.date_pkg, "%d.%m.%Y").date()
+        return self.date_pkg
 
     def status(self) -> str:
         """Returns package status."""
@@ -97,10 +100,7 @@ def print_package_status(package: CeskaPosta):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--package', required=True, help="Package number")
-    args = parser.parse_args()
 
-    # Create a new delivery class
-    delivery = CeskaPosta(args.package)
-    print_package_status(delivery)
+    c = CeskaPosta("DR2350001447U")
+    print(c)
+
